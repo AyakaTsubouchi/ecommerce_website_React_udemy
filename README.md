@@ -66,3 +66,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### I create it following this lesson
+
+https://www.udemy.com/course/build-ecommerce-website-by-react-redux-in-one-hour/learn/lecture/14270058#overview
+
+### 1. Install json-server to create fake REST API.
+
+### 2. create "db.json" in public folder.
+
+### 3. create "product list" component which consists of "products" and in public folder.
+
+### 4.

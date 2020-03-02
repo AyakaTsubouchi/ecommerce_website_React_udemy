@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import util from '../util';
+import Filter from './Filter';
 export default class Products extends Component {
   render() {
     const productItems = this.props.products.map(product => (
       <div className="col-md-4" key={product.id}>
+        <Filter />
         <div className="thumbnail text-center">
           <a
             href={`#${product.id}`}
