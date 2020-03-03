@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import util from '../util';
-import Filter from './Filter';
+
 export default class Products extends Component {
   render() {
     const productItems = this.props.products.map(product => (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Products from './components/Products';
-// import Filter from './components/Filter';
+import Filter from './components/Filter';
 // import Basket from './components/Basket';
 
 // import Copyright from './components/Copyright';
@@ -11,8 +11,14 @@ class App extends Component {
     super();
     this.state = {
       products: [],
-      filteredProducts: []
+      filteredProducts: [],
+      size: '',
+      sort: '',
+      season: ''
     };
+    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleChangeSize = this.handleChangeSize.bind(this);
+    this.handleChangeSeason = this.handleChangeSeason.bind(this);
   }
   componentWillMount() {
     fetch('http://localhost:8000/products')
@@ -25,6 +31,61 @@ class App extends Component {
         console.log(data);
       });
   }
+  handleChangeSort(e) {
+    this.setState({ sort: e.target.value });
+    this.listProducts();
+  }
+  handleChangeSize(e) {
+    this.setState({ size: e.target.value });
+    this.listProducts();
+  }
+  handleChangeSeason(e) {
+    this.setState({ season: e.target.value });
+    this.listProducts();
+  }
+  listProducts() {
+    this.setState(state => {
+      if (state.sort !== '') {
+        state.products.sort((a, b) =>
+          state.sort === 'lowest'
+            ? a.price > b.price
+              ? 1
+              : -1
+            : a.price < b.price
+            ? 1
+            : -1
+        );
+      } else {
+        state.products.sort((a, b) => (a.id < b.id ? 1 : -1));
+      }
+      if (state.size !== '' || state.season !== '') {
+        return {
+          filteredProducts: state.products.filter(function(a) {
+            return (
+              a.availableSizes.indexOf(state.size.toUpperCase()) >= 0 &&
+              a.season.indexOf(state.season.toLowerCase()) >= 0
+            );
+          })
+        };
+      }
+      // if (state.size !== '') {
+      //   return {
+      //     filteredProducts: state.products.filter(function(a) {
+      //       console.log(a.availableSizes);
+      //       return a.availableSizes.indexOf(state.size.toUpperCase()) >= 0;
+      //     })
+      //   };
+      // }
+      // if (state.season !== '') {
+      //   return {
+      //     filteredProducts: state.products.filter(function(a) {
+      //       console.log(a.season);
+      //       return a.season.indexOf(state.season.toLowerCase()) >= 0;
+      //     })
+      //   };
+      // }
+    });
+  }
 
   render() {
     return (
@@ -35,6 +96,15 @@ class App extends Component {
         <hr />
         <div className="row">
           <div className="col-md-9">
+            <hr />
+            <Filter
+              size={this.state.sizes}
+              sort={this.state.sort}
+              handleChangeSize={this.handleChangeSize}
+              handleChangeSort={this.handleChangeSort}
+              handleChangeSeason={this.handleChangeSeason}
+              count={this.state.filteredProducts.length}
+            />
             <hr />
             <Products
               products={this.state.filteredProducts}
