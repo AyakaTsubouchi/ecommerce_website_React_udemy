@@ -14,13 +14,37 @@ class App extends Component {
       filteredProducts: [],
       size: '',
       sort: '',
-      season: ''
+      season: '',
+      weather: undefined,
+      temperature: undefined,
+      city: undefined,
+      humidity: undefined,
+      description: undefined
     };
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
     this.handleChangeSeason = this.handleChangeSeason.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=bb4a064dd41f6fb2bc662bd5dc3ca0b0`
+    ).then(res => {
+      if (res.status !== 200) {
+        console.log('error');
+      }
+      res.json().then(data => {
+        console.log(data);
+        this.setState({
+          weather: data.weather[0].main,
+          temperature: data.main.temp,
+          city: data.name,
+          humidity: data.main.humidity,
+          description: data.weather[0].description,
+          error: ''
+        });
+      });
+    });
+
     fetch('http://localhost:8000/products')
       .then(res => res.json())
       .then(data => {
@@ -39,12 +63,21 @@ class App extends Component {
     this.setState({ size: e.target.value });
     this.listProducts();
   }
-  handleChangeSeason(e) {
-    this.setState({ season: e.target.value });
+  handleChangeSeason() {
+    console.log(this.state.temperature);
+    if (this.state.temperature > 293.15) {
+      this.setState({ season: 'summer' });
+    } else if (this.state.temperature > 283.15) {
+      this.setState({ season: 'autumn' });
+    } else {
+      this.setState({ season: 'winter' });
+    }
     this.listProducts();
   }
+
   listProducts() {
     this.setState(state => {
+      console.log(state.season);
       if (state.sort !== '') {
         state.products.sort((a, b) =>
           state.sort === 'lowest'
@@ -58,7 +91,7 @@ class App extends Component {
       } else {
         state.products.sort((a, b) => (a.id < b.id ? 1 : -1));
       }
-      if (state.size !== '' || state.season !== '') {
+      if (state.size !== '' && state.season !== '') {
         return {
           filteredProducts: state.products.filter(function(a) {
             return (
@@ -67,23 +100,24 @@ class App extends Component {
             );
           })
         };
-      }
-      // if (state.size !== '') {
-      //   return {
-      //     filteredProducts: state.products.filter(function(a) {
-      //       console.log(a.availableSizes);
-      //       return a.availableSizes.indexOf(state.size.toUpperCase()) >= 0;
-      //     })
-      //   };
-      // }
-      // if (state.season !== '') {
-      //   return {
-      //     filteredProducts: state.products.filter(function(a) {
-      //       console.log(a.season);
-      //       return a.season.indexOf(state.season.toLowerCase()) >= 0;
-      //     })
-      //   };
-      // }
+      } else if (state.size === '' && state.season !== '') {
+        return {
+          filteredProducts: state.products.filter(function(a) {
+            return a.season.indexOf(state.season.toLowerCase()) >= 0;
+          })
+        };
+      } else if (state.size !== '' && state.season === '')
+        return {
+          filteredProducts: state.products.filter(function(a) {
+            return a.availableSizes.indexOf(state.size.toUpperCase()) >= 0;
+          })
+        };
+      else
+        return {
+          filteredProducts: state.products.filter(function(a) {
+            return state.filteredProducts;
+          })
+        };
     });
   }
 

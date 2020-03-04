@@ -37,16 +37,16 @@ export default class Filter extends Component {
           <div className="col-md-3">
             <label>
               Season
-              <select
+              <button
                 className="form-control"
-                onChange={this.props.handleChangeSeason}
+                onClick={this.props.handleChangeSeason}
                 value={this.props.season}>
-                <option value="">ALL</option>
-                <option value="spring">SUPRING</option>
-                <option value="summer">SUMMER</option>
+                {/* value={this.props.season} */}
+                {/* <option>get season</option> */}
+                {/* <option value="summer">SUMMER</option>
                 <option value="autumn">AUTUMN</option>
-                <option value="winter">WINTER</option>
-              </select>
+                <option value="winter">WINTER</option> */}
+              </button>
             </label>
           </div>
         </div>
