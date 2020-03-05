@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Products from './components/Products';
 import Filter from './components/Filter';
-// import Basket from './components/Basket';
+import Basket from './components/Basket';
 
 // import Copyright from './components/Copyright';
 // import './scss/Style.css';
@@ -19,11 +19,14 @@ class App extends Component {
       temperature: undefined,
       city: undefined,
       humidity: undefined,
-      description: undefined
+      description: undefined,
+      cartItems: []
     };
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
     this.handleChangeSeason = this.handleChangeSeason.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
   componentDidMount() {
     fetch(
@@ -120,7 +123,26 @@ class App extends Component {
         };
     });
   }
-
+  handleAddToCart(e, product) {
+    this.setState(state => {
+      const cartItems = state.cartItems;
+      let productAlreadyInCart = false;
+      cartItems.forEach(item => {
+        if (item.id === product.id) {
+          productAlreadyInCart = true;
+          item.count++;
+        }
+      });
+      if (!productAlreadyInCart) {
+        cartItems.push({ ...product, count: 1 });
+      }
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      return cartItems;
+    });
+  }
+  handleRemoveFromCart(e) {
+    alert('hey');
+  }
   render() {
     return (
       <div className="container">
@@ -145,7 +167,12 @@ class App extends Component {
               handleAddToCart={this.handleAddToCart}
             />
           </div>
-          <div className="col-md-3"></div>
+          <div className="col-md-3">
+            <Basket
+              cartItems={this.state.cartItems}
+              handleRemoveFromCart={this.handleRemoveFromCart}
+            />
+          </div>
         </div>
       </div>
     );
