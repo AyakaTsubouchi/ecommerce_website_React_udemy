@@ -1,0 +1,113 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "sku": 18644119330491312,
+      "title": "X L XL XXL spring",
+      "description": "Sphynx Tie Dye Grey",
+      "availableSizes": ["X", "L", "XL", "XXL"],
+      "price": 10,
+      "season": ["spring"],
+      "isFreeShipping": true
+    },
+
+    {
+      "id": 2,
+      "sku": 11854078013954528,
+      "title": "X M L summer",
+      "description": "Danger Knife Grey",
+      "availableSizes": ["X", "M", "L"],
+      "price": 14.9,
+      "season": ["summer"],
+      "isFreeShipping": true
+    },
+
+    {
+      "id": 3,
+      "sku": 876661122392077,
+      "title": "X M L autumn",
+      "description": "White DGK Script",
+      "availableSizes": ["X", "M", "L"],
+      "price": 14.9,
+      "season": ["autumn"],
+      "isFreeShipping": true
+    },
+
+    {
+      "id": 4,
+      "sku": 9197907543445677,
+      "title": "Born On The Streets  T-Shirt",
+      "description": "XL winter",
+      "availableSizes": ["XL"],
+      "price": 25.9,
+      "season": ["winter"],
+      "isFreeShipping": false
+    },
+
+    {
+      "id": 5,
+      "sku": 10547961582846888,
+      "title": "X L XL spring",
+      "description": "Tso 3D Short Sleeve",
+      "availableSizes": ["X", "L", "XL"],
+      "price": 10.9,
+      "season": ["spring"],
+      "isFreeShipping": false
+    },
+
+    {
+      "id": 6,
+      "sku": 6090484789343891,
+      "title": "XL XXL summer",
+      "description": "Man Tie Dye Cinza Grey",
+      "availableSizes": ["XL", "XXL"],
+      "price": 49.9,
+      "season": ["summer"],
+      "isFreeShipping": false
+    },
+
+    {
+      "id": 7,
+      "sku": 18532669286405342,
+      "title": "S autumn",
+      "description": "1977 Infantil",
+      "availableSizes": ["S"],
+      "style": "Preto com listras brancas",
+      "price": 22.5,
+      "season": ["autumn"],
+      "isFreeShipping": true
+    },
+
+    {
+      "id": 8,
+      "sku": 5619496040738316,
+      "title": "TXL winter",
+      "description": "",
+      "availableSizes": ["XL"],
+      "style": "Azul escuro",
+      "price": 18.7,
+      "season": ["winter"],
+      "isFreeShipping": false
+    },
+    {
+      "id": 9,
+      "sku": 11600983276356165,
+      "title": "L XL spring",
+      "description": "",
+      "availableSizes": ["L", "XL"],
+      "price": 134.9,
+      "season": ["spring"],
+      "isFreeShipping": true
+    },
+    {
+      "id": 10,
+      "sku": 11600983276356165,
+      "title": "L XL winter",
+      "description": "",
+      "availableSizes": ["M", "L", "XL"],
+      "price": 134.9,
+      "season": ["winter"],
+      "isFreeShipping": true
+    }
+  ]
+}
