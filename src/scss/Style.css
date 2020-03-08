@@ -1,9 +1,13 @@
-.container {
+/* .container {
   background-color: #650675;
   color: white;
 }
 
 .row {
   border: 10px solid #eded0e;
-}
+} */
 /*# sourceMappingURL=Style.css.map */
+img {
+  margin-top: 10px;
+ 
+}

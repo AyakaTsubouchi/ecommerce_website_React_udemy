@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export default class Filter extends Component {
   render() {
+    console.log("I'm count from filter" + this.props.count);
     return (
       <div>
         <div className="row">
@@ -41,6 +42,7 @@ export default class Filter extends Component {
                 className="form-control"
                 onClick={this.props.handleChangeSeason}
                 value={this.props.season}>
+                {/* TODO chenge to selection form Todays weather, supring,summer,autumn,winter*/}
                 {/* value={this.props.season} */}
                 {/* <option>get season</option> */}
                 {/* <option value="summer">SUMMER</option>

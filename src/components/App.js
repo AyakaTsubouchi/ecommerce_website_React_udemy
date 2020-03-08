@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Products from './components/Products';
-import Filter from './components/Filter';
-import Basket from './components/Basket';
-
+import Products from './Products';
+import Filter from './Filter';
+import Basket from './Basket';
+import Header from './Header';
+import WeatherInfo from './WeatherInfo';
 // import Copyright from './components/Copyright';
 // import './scss/Style.css';
 
@@ -16,6 +17,7 @@ class App extends Component {
       sort: '',
       season: '',
       weather: undefined,
+      weatherImg: undefined,
       temperature: undefined,
       city: undefined,
       humidity: undefined,
@@ -28,6 +30,7 @@ class App extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
+
   componentDidMount() {
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=bb4a064dd41f6fb2bc662bd5dc3ca0b0`
@@ -35,19 +38,29 @@ class App extends Component {
       if (res.status !== 200) {
         console.log('error');
       }
-      res.json().then(data => {
-        console.log(data);
-        this.setState({
-          weather: data.weather[0].main,
-          temperature: data.main.temp,
-          city: data.name,
-          humidity: data.main.humidity,
-          description: data.weather[0].description,
-          error: ''
+      res
+        .json()
+        .then(data => {
+          console.log(data);
+          this.setState({
+            weather: data.weather[0].main,
+            temperature: data.main.temp,
+            city: data.name,
+            humidity: data.main.humidity,
+            description: data.weather[0].description,
+            error: ''
+          });
+        })
+        .then(state => {
+          if (this.state.weather === 'clear') {
+            this.setState({ weatherImg: 'sun' });
+          } else if (this.state.weather === 'Rain') {
+            this.setState({ weatherImg: 'rainy' });
+          } else {
+            this.setState({ weatherImg: 'cloudy' });
+          }
         });
-      });
     });
-
     fetch('http://localhost:8000/products')
       .then(res => res.json())
       .then(data => {
@@ -137,41 +150,55 @@ class App extends Component {
         cartItems.push({ ...product, count: 1 });
       }
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      return cartItems;
+      return { cartItems: cartItems };
     });
   }
-  handleRemoveFromCart(e) {
-    alert('hey');
+  handleRemoveFromCart(e, item) {
+    this.setState(state => {
+      const cartItems = state.cartItems.filter(elm => elm.id !== item.id);
+      //now cartItems are the itmes which aren't clicked
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      // console.log("I'm handleRemove");
+      return { cartItems: cartItems };
+    });
   }
   render() {
+    console.log('weather image' + this.state.weatherImg);
     return (
-      <div className="container">
-        <h1 style={{ textAlign: 'center' }}>
-          E-commerce Shopping Cart Application
-        </h1>
-        <hr />
-        <div className="row">
-          <div className="col-md-9">
-            <hr />
-            <Filter
-              size={this.state.sizes}
-              sort={this.state.sort}
-              handleChangeSize={this.handleChangeSize}
-              handleChangeSort={this.handleChangeSort}
-              handleChangeSeason={this.handleChangeSeason}
-              count={this.state.filteredProducts.length}
-            />
-            <hr />
-            <Products
-              products={this.state.filteredProducts}
-              handleAddToCart={this.handleAddToCart}
-            />
-          </div>
-          <div className="col-md-3">
-            <Basket
-              cartItems={this.state.cartItems}
-              handleRemoveFromCart={this.handleRemoveFromCart}
-            />
+      <div>
+        <Header />
+
+        <div className="container" style={{ marginTop: '30px' }}>
+          <WeatherInfo
+            weatherImg={this.state.weatherImg}
+            weather={this.state.weather}
+            temperature={this.state.temperature}
+            city={this.state.city}
+          />
+          <hr />
+          <div className="row">
+            <div className="col-lg-9">
+              <hr />
+              <Filter
+                size={this.state.sizes}
+                sort={this.state.sort}
+                handleChangeSize={this.handleChangeSize}
+                handleChangeSort={this.handleChangeSort}
+                handleChangeSeason={this.handleChangeSeason}
+                count={this.state.filteredProducts.length}
+              />
+              <hr />
+              <Products
+                products={this.state.filteredProducts}
+                handleAddToCart={this.handleAddToCart}
+              />
+            </div>
+            <div className="col-lg-3">
+              <Basket
+                cartItems={this.state.cartItems}
+                handleRemoveFromCart={this.handleRemoveFromCart}
+              />
+            </div>
           </div>
         </div>
       </div>

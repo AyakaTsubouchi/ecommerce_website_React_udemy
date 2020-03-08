@@ -98,6 +98,16 @@
       "price": 134.9,
       "season": ["spring"],
       "isFreeShipping": true
+    },
+    {
+      "id": 10,
+      "sku": 11600983276356165,
+      "title": "L XL winter",
+      "description": "",
+      "availableSizes": ["M", "L", "XL"],
+      "price": 134.9,
+      "season": ["winter"],
+      "isFreeShipping": true
     }
   ]
 }
