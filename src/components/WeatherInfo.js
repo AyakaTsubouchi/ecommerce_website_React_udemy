@@ -5,16 +5,13 @@ export default class WeatherInfo extends Component {
     console.log('img' + this.props.weather);
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>What To Wear</h1>
-        <hr />
-        <div className="container">
+        <div className="container WeatherInfo">
           <div className="row">
             <div className="col">
               <h3>{this.props.city}</h3>
               <img
                 src={`/weatherImages/${this.props.weatherImg}.png`}
                 alt={this.props.weather}
-                style={{ marginTop: '10px' }}
               />
               <h5>{this.props.weather}</h5>
             </div>

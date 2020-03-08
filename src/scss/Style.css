@@ -1,13 +1,22 @@
-/* .container {
-  background-color: #650675;
-  color: white;
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5 {
+  text-align: center;
 }
 
-.row {
-  border: 10px solid #eded0e;
-} */
-/*# sourceMappingURL=Style.css.map */
-img {
-  margin-top: 10px;
- 
+.WeatherInfo img {
+  margin-top: 0;
+  width: 400px;
 }
+
+.Products img {
+  margin-top: 10px;
+  width: 170px;
+}
+
+body {
+  background-color: 0;
+}
+/*# sourceMappingURL=Style.css.map */
