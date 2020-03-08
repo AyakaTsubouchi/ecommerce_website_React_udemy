@@ -38,7 +38,7 @@ class App extends Component {
     const opAPIkey = 'a9d26cdce59f235872922cf298bfdd24';
     const cnt = '1';
     fetch(
-      `http://api.darksky.net/forecast/791989e83043288616d30ac61fc806e7/37.8267,-122.4233/`
+      `https://api.darksky.net/forecast/791989e83043288616d30ac61fc806e7/37.8267,-122.4233/`
     ).then(res => {
       if (res.status !== 200) {
         console.log('error');
