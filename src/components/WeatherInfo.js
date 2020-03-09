@@ -7,13 +7,13 @@ export default class WeatherInfo extends Component {
       <div>
         <hr />
         <div className="container weatherInfo">
+
           <div className="row">
             <div className="col">
               <h3>{this.props.city}</h3>
               <img
                 src={`/weatherImages/${this.props.weatherImg}.png`}
                 alt={this.props.weather}
-                style={{ marginTop: '10px' }}
               />
               <h5>{this.props.weather}</h5>
             </div>

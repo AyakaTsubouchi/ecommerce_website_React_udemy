@@ -30,8 +30,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const apikey = '791989e83043288616d30ac61fc806e7';
+    const darkSky = 'https://api.darksky.net/forecast';
+    const openweather =
+      'api.openweathermap.org/data/2.5/forecast/daily?q={city name}&cnt={cnt}&appid={your api key}';
+    const cityname = 'Vancouver';
+    const opAPIkey = 'a9d26cdce59f235872922cf298bfdd24';
+    const cnt = '1';
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=bb4a064dd41f6fb2bc662bd5dc3ca0b0`
+      `https://api.darksky.net/forecast/791989e83043288616d30ac61fc806e7/37.8267,-122.4233/`
     ).then(res => {
       if (res.status !== 200) {
         console.log('error');
@@ -39,7 +46,7 @@ class App extends Component {
       res
         .json()
         .then(data => {
-          console.log(data);
+          console.log('Its dar sky ' + data);
           this.setState({
             weather: data.weather[0].main,
             temperature: data.main.temp,
@@ -165,9 +172,11 @@ class App extends Component {
     return (
       <div>
         <Header />
-
+        <br />
         <div className="container" style={{ marginTop: '30px' }}>
-          <h1 style={{ textAlign: 'center' }}>What To Wear</h1>
+
+          <h1>What To Wear</h1>
+          <hr />
           <WeatherInfo
             weatherImg={this.state.weatherImg}
             weather={this.state.weather}
