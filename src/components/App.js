@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       products: [],
       filteredProducts: [],
-      feeling: '',
+      size: '',
       sort: '',
       season: '',
       weather: undefined,
@@ -23,7 +23,7 @@ class App extends Component {
       cartItems: []
     };
     this.handleChangeSort = this.handleChangeSort.bind(this);
-    this.handleChangefeeling = this.handleChangefeeling.bind(this);
+    this.handleChangeSize = this.handleChangeSize.bind(this);
     this.handleChangeSeason = this.handleChangeSeason.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
@@ -38,8 +38,7 @@ class App extends Component {
     const opAPIkey = 'a9d26cdce59f235872922cf298bfdd24';
     const cnt = '1';
     fetch(
-      'http://api.openweathermap.org/data/2.5/weather?q=London&appid=a9d26cdce59f235872922cf298bfdd24'
-      // `https://api.darksky.net/forecast/791989e83043288616d30ac61fc806e7/37.8267,-122.4233/`
+      `https://api.darksky.net/forecast/791989e83043288616d30ac61fc806e7/37.8267,-122.4233/`
     ).then(res => {
       if (res.status !== 200) {
         console.log('error');
@@ -81,8 +80,8 @@ class App extends Component {
     this.setState({ sort: e.target.value });
     this.listProducts();
   }
-  handleChangefeeling(e) {
-    this.setState({ feeling: e.target.value });
+  handleChangeSize(e) {
+    this.setState({ size: e.target.value });
     this.listProducts();
   }
   handleChangeSeason() {
@@ -113,25 +112,25 @@ class App extends Component {
       } else {
         state.products.sort((a, b) => (a.id < b.id ? 1 : -1));
       }
-      if (state.feeling !== '' && state.season !== '') {
+      if (state.size !== '' && state.season !== '') {
         return {
           filteredProducts: state.products.filter(function(a) {
             return (
-              a.feeling.indexOf(state.feeling.toUpperCase()) >= 0 &&
+              a.availableSizes.indexOf(state.size.toUpperCase()) >= 0 &&
               a.season.indexOf(state.season.toLowerCase()) >= 0
             );
           })
         };
-      } else if (state.feeling === '' && state.season !== '') {
+      } else if (state.size === '' && state.season !== '') {
         return {
           filteredProducts: state.products.filter(function(a) {
             return a.season.indexOf(state.season.toLowerCase()) >= 0;
           })
         };
-      } else if (state.feeling !== '' && state.season === '')
+      } else if (state.size !== '' && state.season === '')
         return {
           filteredProducts: state.products.filter(function(a) {
-            return a.feeling.indexOf(state.feeling.toUpperCase()) >= 0;
+            return a.availableSizes.indexOf(state.size.toUpperCase()) >= 0;
           })
         };
       else
@@ -188,9 +187,9 @@ class App extends Component {
             <div className="col-lg-9">
               <hr />
               <Filter
-                feeling={this.state.feeling}
+                size={this.state.sizes}
                 sort={this.state.sort}
-                handleChangefeeling={this.handleChangefeeling}
+                handleChangeSize={this.handleChangeSize}
                 handleChangeSort={this.handleChangeSort}
                 handleChangeSeason={this.handleChangeSeason}
                 count={this.state.filteredProducts.length}
