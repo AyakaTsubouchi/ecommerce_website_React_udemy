@@ -4,8 +4,6 @@ import Filter from './Filter';
 import Basket from './Basket';
 import Header from './Header';
 import WeatherInfo from './WeatherInfo';
-// import Copyright from './components/Copyright';
-// import './scss/Style.css';
 
 class App extends Component {
   constructor() {
@@ -169,11 +167,14 @@ class App extends Component {
         <Header />
 
         <div className="container" style={{ marginTop: '30px' }}>
+          <h1 style={{ textAlign: 'center' }}>What To Wear</h1>
           <WeatherInfo
             weatherImg={this.state.weatherImg}
             weather={this.state.weather}
             temperature={this.state.temperature}
             city={this.state.city}
+            humidity={this.state.humidity}
+            description={this.state.description}
           />
           <hr />
           <div className="row">
@@ -188,6 +189,7 @@ class App extends Component {
                 count={this.state.filteredProducts.length}
               />
               <hr />
+              <h5>Today's style</h5>
               <Products
                 products={this.state.filteredProducts}
                 handleAddToCart={this.handleAddToCart}

@@ -1,20 +1,21 @@
-@import './color.scss';
+.weatherInfo {
+  text-align: center;
 
-.container {
-  background-color: $base-color;
+  img {
+    width: 200px;
+  }
+  .card-body {
+    h4 {
+      text-align: left;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
   color: white;
+}
 
-  h1 {
-    text-align: center;
-  }
-  a {
-    text-decoration: none;
-    color: white;
-  }
-}
-.row {
-  border: 10px solid $border-color;
-}
 image {
   margin-top: 10px;
 }
