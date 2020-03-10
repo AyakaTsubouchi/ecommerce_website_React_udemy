@@ -174,10 +174,6 @@ class App extends Component {
         <Header />
         <br />
         <div className="container" style={{ marginTop: '30px' }}>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9808db529ee8cd06746ffd727dc402b488b4e5ed
           <h1>What To Wear</h1>
           <hr />
           <WeatherInfo
