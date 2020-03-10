@@ -7,6 +7,10 @@ export default class WeatherInfo extends Component {
       <div>
         <hr />
         <div className="container weatherInfo">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9808db529ee8cd06746ffd727dc402b488b4e5ed
           <div className="row">
             <div className="col">
               <h3>{this.props.city}</h3>

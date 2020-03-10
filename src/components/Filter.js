@@ -32,6 +32,10 @@ export default class Filter extends Component {
                 <option value="M">Casual</option>
                 <option value="L">Men</option>
                 <option value="XL">Women</option>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9808db529ee8cd06746ffd727dc402b488b4e5ed
               </select>
             </label>
           </div>
