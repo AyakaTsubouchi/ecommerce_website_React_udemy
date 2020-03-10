@@ -22,16 +22,16 @@ export default class Filter extends Component {
           </div>
           <div className="col-md-3">
             <label>
-              size
+              Situation
               <select
                 className="form-control"
                 onChange={this.props.handleChangeSize}
                 value={this.props.size}>
                 <option value="">ALL</option>
-                <option value="WOMEN">WOMEN</option>
-                <option value="MEN">MEN</option>
-                <option value="FORMAL">FORMAL</option>
-                <option value="CASUAL">CASUAL</option>
+                <option value="S">Formal</option>
+                <option value="M">Casual</option>
+                <option value="L">Men</option>
+                <option value="XL">Women</option>
               </select>
             </label>
           </div>
@@ -41,14 +41,7 @@ export default class Filter extends Component {
               <button
                 className="form-control"
                 onClick={this.props.handleChangeSeason}
-                value={this.props.season}>
-                {/* TODO chenge to selection form Todays weather, supring,summer,autumn,winter*/}
-                {/* value={this.props.season} */}
-                {/* <option>get season</option> */}
-                {/* <option value="summer">SUMMER</option>
-                <option value="autumn">AUTUMN</option>
-                <option value="winter">WINTER</option> */}
-              </button>
+                value={this.props.season}></button>
             </label>
           </div>
         </div>

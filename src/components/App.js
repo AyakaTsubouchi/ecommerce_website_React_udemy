@@ -181,6 +181,8 @@ class App extends Component {
             weather={this.state.weather}
             temperature={this.state.temperature}
             city={this.state.city}
+            humidity={this.state.humidity}
+            description={this.state.description}
           />
           <hr />
           <div className="row">
@@ -195,6 +197,7 @@ class App extends Component {
                 count={this.state.filteredProducts.length}
               />
               <hr />
+              <h5>Today's style</h5>
               <Products
                 products={this.state.filteredProducts}
                 handleAddToCart={this.handleAddToCart}
